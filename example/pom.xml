@@ -11,12 +11,13 @@
         <relativePath />
     </parent>
 
-    <groupId>org.noear.bundle</groupId>
-    <artifactId>solon-admin</artifactId>
+    <groupId>org.noear.demo</groupId>
+    <artifactId>solon-admin-example</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>projects</module>
-        <module>example</module>
+        <module>demo1081-solon-admin_server</module>
+        <module>demo1082-solon-admin_client</module>
+        <module>demo1083-solon-admin_single</module>
     </modules>
 </project>
