@@ -17,6 +17,7 @@
 
     <modules>
         <module>projects</module>
+        <module>projects/solon.health.detector</module>
         <module>example</module>
     </modules>
 </project>

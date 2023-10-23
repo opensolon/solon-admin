@@ -16,7 +16,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>solon.health.detector</module>
         <module>solon-admin-client</module>
         <module>solon-admin-server</module>
         <module>solon-admin-server-ui</module>
