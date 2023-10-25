@@ -48,12 +48,10 @@ Solon Java Framework
 
 <hr />
 
-### Solon-Admin 使用说明 :
-
-solon-admin-client
+solon-admin-client 使用说明:
 
   * https://solon.noear.org/article/580
 
-solon-admin-server
+solon-admin-server 使用说明:
 
   * https://solon.noear.org/article/581
