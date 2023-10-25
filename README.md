@@ -1,8 +1,8 @@
 <h1 align="center" style="text-align:center;">
-Solon
+Solon Java Framework
 </h1>
 <p align="center">
-	<strong>Java 新的生态型应用开发框架，更小、更快、更简单！</strong>
+	<strong>Java 新的生态，更小、更快、更简单！</strong>
 </p>
 <p align="center">
 	<a href="https://solon.noear.org/">https://solon.noear.org</a>
@@ -47,3 +47,13 @@ Solon
 启动快 5 ～ 10 倍；qps 高 2～ 3 倍；运行时内存节省 1/3 ~ 1/2；打包可以缩到 1/2 ~ 1/10
 
 <hr />
+
+### Solon-Admin 使用说明 :
+
+solon-admin-client
+
+  * https://solon.noear.org/article/580
+
+solon-admin-server
+
+  * https://solon.noear.org/article/581
