@@ -22,7 +22,6 @@ public class XPluginImpl implements Plugin {
 
         //1.启用 ws
         Solon.app().enableWebSocket(true);
-        Solon.app().enableWebSocketMvc(false);
 
         //2.扫描bean
         context.beanScan("org.noear.solon.admin.server");

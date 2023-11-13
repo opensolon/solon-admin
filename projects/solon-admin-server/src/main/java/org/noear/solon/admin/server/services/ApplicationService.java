@@ -8,7 +8,7 @@ import org.noear.solon.admin.server.data.ApplicationWebsocketTransfer;
 import org.noear.solon.admin.server.utils.JsonUtils;
 import org.noear.solon.annotation.Component;
 import org.noear.solon.annotation.Inject;
-import org.noear.solon.core.message.Session;
+import org.noear.solon.net.websocket.WebSocket;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class ApplicationService {
     private ServerProperties serverProperties;
 
     @Inject("applicationWebsocketSessions")
-    private List<Session> sessions;
+    private List<WebSocket> sessions;
 
     @Inject
     private ClientMonitorService clientMonitorService;
@@ -60,7 +60,7 @@ public class ApplicationService {
         // 计划心跳检测
         scheduleHeartbeatCheck(application);
         // 向前端发送注册信息
-        sessions.forEach(it -> it.sendAsync(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
+        sessions.forEach(it -> it.send(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
                 null,
                 "registerApplication",
                 application
@@ -85,7 +85,7 @@ public class ApplicationService {
         scheduledThreadPoolExecutor.remove(runningHeartbeatTasks.get(find.get()));
         scheduledThreadPoolExecutor.remove(runningClientMonitorTasks.get(find.get()));
         // 向前端发送注销信息
-        sessions.forEach(it -> it.sendAsync(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
+        sessions.forEach(it -> it.send(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
                 null,
                 "unregisterApplication",
                 find.get()
@@ -112,7 +112,7 @@ public class ApplicationService {
         find.get().setLastUpTime(System.currentTimeMillis());
 
         // 向前端发送数据更新
-        sessions.forEach(it -> it.sendAsync(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
+        sessions.forEach(it -> it.send(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
                 null,
                 "updateApplication",
                 find.get()
@@ -142,7 +142,7 @@ public class ApplicationService {
         application.setLastDownTime(System.currentTimeMillis());
 
         // 向前端发送数据更新
-        sessions.forEach(it -> it.sendAsync(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
+        sessions.forEach(it -> it.send(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
                 null,
                 "updateApplication",
                 application
@@ -162,7 +162,7 @@ public class ApplicationService {
         application.setMonitors(clientMonitorService.getMonitors(application));
 
         // 向前端发送数据更新
-        sessions.forEach(it -> it.sendAsync(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
+        sessions.forEach(it -> it.send(JsonUtils.toJson(new ApplicationWebsocketTransfer<>(
                 null,
                 "updateApplication",
                 application
