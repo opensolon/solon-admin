@@ -20,6 +20,15 @@ public class XPluginImpl implements Plugin {
             return;
         }
 
+        //弃用
+        if(Solon.cfg().getBool("solon.admin.server.enabled",true) == false){
+            return;
+        }
+
+        if(Solon.cfg().getBool("solon.admin.server.enable",true) == false){
+            return;
+        }
+
         //1.启用 ws
         Solon.app().enableWebSocket(true);
 

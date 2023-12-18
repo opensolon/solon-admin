@@ -47,7 +47,6 @@ public class AdminClientBootstrapConfiguration {
     @Bean
     public MarkedClientEnabled markedClientEnabled(@Inject ClientProperties clientProperties) {
         if (clientProperties == null || !clientProperties.isEnabled()) {
-            log.error("Failed to enable Solon Admin client.", new IllegalStateException("Could not enable Solon Admin client because none of the properties has been configured correctly."));
             return null;
         }
         return new MarkedClientEnabled(clientProperties.getMode());

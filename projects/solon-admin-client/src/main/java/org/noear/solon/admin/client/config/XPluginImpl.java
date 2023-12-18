@@ -19,6 +19,15 @@ public class XPluginImpl implements Plugin {
             return;
         }
 
+        //弃用
+        if(Solon.cfg().getBool("solon.admin.client.enabled",true) == false){
+            return;
+        }
+
+        if(Solon.cfg().getBool("solon.admin.client.enable",true) == false){
+            return;
+        }
+
         context.beanScan("org.noear.solon.admin.client");
 
         EventBus.subscribe(AppLoadEndEvent.class, e->{
