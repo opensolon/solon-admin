@@ -12,12 +12,12 @@
     </parent>
 
     <groupId>org.noear</groupId>
-    <artifactId>solon-admin-parent</artifactId>
+    <artifactId>solon-admin-bundle1</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>solon-admin-client</module>
-        <module>solon-admin-server</module>
-        <module>solon-admin-server-ui</module>
+        <module>../../solon-admin-client</module>
+        <module>../../solon-admin-server</module>
+        <module>../../solon-admin-server-ui</module>
     </modules>
 </project>

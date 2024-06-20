@@ -11,8 +11,8 @@
         <relativePath />
     </parent>
 
-    <groupId>org.noear.demo</groupId>
-    <artifactId>solon-admin-example</artifactId>
+    <groupId>org.noear.demo.solon-admin</groupId>
+    <artifactId>_example</artifactId>
     <packaging>pom</packaging>
 
     <modules>

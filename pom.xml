@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>projects</module>
-        <module>example</module>
+        <module>__release</module>
+        <module>_example</module>
     </modules>
 </project>
