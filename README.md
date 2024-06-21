@@ -59,3 +59,25 @@ solon-admin-client 使用说明:
 solon-admin-server 使用说明:
 
   * https://solon.noear.org/article/581
+
+<hr />
+
+## 主要代码仓库
+
+| 代码仓库                                            | 描述                               | 
+|-------------------------------------------------|----------------------------------| 
+| https://gitee.com/opensolon/solon               | Solon ,主代码仓库                     | 
+| https://gitee.com/opensolon/solon-examples      | Solon ,官网配套示例代码仓库                |
+|                                                 |                                  |
+| https://gitee.com/opensolon/solon-cloud         | Solon Cloud ,代码仓库                | 
+| https://gitee.com/opensolon/solon-admin         | Solon Admin ,代码仓库                | 
+| https://gitee.com/opensolon/solon-jakarta       | Solon Jakarta ,代码仓库（base java17） | 
+| https://gitee.com/opensolon/solon-integration   | Solon Integration ,代码仓库          | 
+|                                                 |                                  |
+| https://gitee.com/opensolon/solon-gradle-plugin | Solon Gradle ,插件代码仓库             | 
+| https://gitee.com/opensolon/solon-idea-plugin   | Solon Idea ,插件代码仓库               | 
+| https://gitee.com/opensolon/solon-vscode-plugin | Solon VsCode ,插件代码仓库             | 
+|                                                 |                                  |
+| https://gitee.com/dromara/solon-plugins         | Solon 第三方扩展插件代码仓库                | 
+
+
