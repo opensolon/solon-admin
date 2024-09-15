@@ -6,9 +6,9 @@ import org.noear.solon.admin.client.services.ApplicationRegistrationService;
 import org.noear.solon.annotation.Bean;
 import org.noear.solon.annotation.Configuration;
 import org.noear.solon.annotation.Inject;
+import org.noear.solon.core.AppContext;
 import org.noear.solon.core.event.AppLoadEndEvent;
 import org.noear.solon.core.event.AppPrestopEndEvent;
-import org.noear.solon.core.event.EventBus;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,8 +21,11 @@ import java.util.TimerTask;
  */
 @Configuration
 public class AutoRegistrationConfiguration {
-
     private final Timer timer = new Timer();
+
+    @Inject
+    AppContext appContext;
+
     @Inject
     private ClientProperties clientProperties;
 
@@ -34,8 +37,8 @@ public class AutoRegistrationConfiguration {
         if (marked == null) return;
 
         // 订阅事件
-        EventBus.subscribe(AppLoadEndEvent.class, e -> onStart(applicationRegistrationService));
-        EventBus.subscribe(AppPrestopEndEvent.class, e -> onStop(applicationRegistrationService));
+        appContext.onEvent(AppLoadEndEvent.class, e -> onStart(applicationRegistrationService));
+        appContext.onEvent(AppPrestopEndEvent.class, e -> onStop(applicationRegistrationService));
     }
 
     public void onStart(ApplicationRegistrationService applicationRegistrationService) {

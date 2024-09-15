@@ -30,7 +30,7 @@ public class XPluginImpl implements Plugin {
 
         context.beanScan("org.noear.solon.admin.client");
 
-        EventBus.subscribe(AppLoadEndEvent.class, e->{
+        context.onEvent(AppLoadEndEvent.class, e->{
             DetectorManager.start("*");
         });
     }
