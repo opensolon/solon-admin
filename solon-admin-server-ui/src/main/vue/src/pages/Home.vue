@@ -151,4 +151,9 @@ function goToDetails(app: Application) {
 :deep(.arco-list-item-meta-description) .arco-link {
   padding: 0;
 }
+
+.applications :deep(.arco-list-content) {
+  overflow-y: auto;
+  height: calc(100vh - 430px);
+}
 </style>
