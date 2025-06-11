@@ -18,12 +18,12 @@ import java.util.Map;
 public class ServerProperties {
     /**
      * 是否启用
-     * */
+     */
     private boolean enabled = true;
     /**
      * 模式
-     * */
-    private String mode = "local";
+     */
+    private String mode = AdminServerBootstrapConfiguration.MarkedServerEnabled.LOCAL_MODE;
 
     private long heartbeatInterval = 10 * 1000;
 
@@ -35,10 +35,10 @@ public class ServerProperties {
 
     /**
      * 介绍路径
-     * */
+     */
     private String uiPath = "/";
     /**
      * base 签权
-     * */
+     */
     private Map<String, String> basicAuth;
 }

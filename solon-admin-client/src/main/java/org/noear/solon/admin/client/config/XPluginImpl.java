@@ -5,7 +5,6 @@ import org.noear.solon.admin.client.annotation.EnableAdminClient;
 import org.noear.solon.core.AppContext;
 import org.noear.solon.core.Plugin;
 import org.noear.solon.core.event.AppLoadEndEvent;
-import org.noear.solon.core.event.EventBus;
 import org.noear.solon.health.detector.DetectorManager;
 
 /**
@@ -15,22 +14,17 @@ import org.noear.solon.health.detector.DetectorManager;
 public class XPluginImpl implements Plugin {
     @Override
     public void start(AppContext context) throws Throwable {
-        if(Solon.app().source().isAnnotationPresent(EnableAdminClient.class) == false){
+        if (!Solon.app().source().isAnnotationPresent(EnableAdminClient.class)) {
             return;
         }
 
-        //弃用
-        if(Solon.cfg().getBool("solon.admin.client.enabled",true) == false){
-            return;
-        }
-
-        if(Solon.cfg().getBool("solon.admin.client.enable",true) == false){
+        if(!Solon.cfg().getBool("solon.admin.client.enable", true)){
             return;
         }
 
         context.beanScan("org.noear.solon.admin.client");
 
-        context.onEvent(AppLoadEndEvent.class, e->{
+        context.onEvent(AppLoadEndEvent.class, e -> {
             DetectorManager.start("*");
         });
     }

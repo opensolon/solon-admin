@@ -42,10 +42,16 @@ solon.admin.client:
   serverUrl: "http://localhost:8080" #Solon Admin Server 实例地址
   connectTimeout: 5000 #连接超时，单位：毫秒
   readTimeout: 5000 #读取超时，单位：毫秒
-  metadata: "" #自定义元数据
+  heartbeatInterval: 10000 #心跳间隔时间，单位：毫秒
+  retryInterval: 3000 #重试请求间隔时间，单位：毫秒
   showSecretInformation: false #是否向服务端发送敏感信息，如环境变量等
 ```
 
 ## 4. 配置中心
 
 Solon Admin Client 支持连接到配置中心，只需将 `mode` 设置为 `cloud`，并在 Solon 中配置配置中心相关信息即可启用。
+
+## 5. 注册中心
+
+Solon Admin Client 支持从注册中心获取 Solon Admin Server 实例地址，只需将 `mode` 设置为 `cloud`，并在 Solon 中配置注册中心相关信息即可启用。
+连接注册中心之后`solon.admin.client.serverUrl`配置为服务名即可，例如：`lb://solon-admin-server`

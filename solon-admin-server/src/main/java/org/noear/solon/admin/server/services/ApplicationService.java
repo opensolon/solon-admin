@@ -8,6 +8,7 @@ import org.noear.solon.admin.server.data.ApplicationWebsocketTransfer;
 import org.noear.solon.admin.server.utils.JsonUtils;
 import org.noear.solon.annotation.Component;
 import org.noear.solon.annotation.Inject;
+import org.noear.solon.core.handle.Result;
 import org.noear.solon.net.websocket.WebSocket;
 
 import java.util.Collection;
@@ -99,13 +100,13 @@ public class ApplicationService {
      *
      * @param application 应用程序
      */
-    public void heartbeatApplication(Application application) {
+    public Result<String> heartbeatApplication(Application application) {
         val find = applications.values().stream().filter(it -> it.equals(application)).findFirst();
-        if (!find.isPresent()) return;
+        if (!find.isPresent()) return Result.failure();
         find.get().setLastHeartbeat(System.currentTimeMillis());
 
         // 如果应用程序已经是 UP 状态，则不需要再次发送心跳
-        if (application.getStatus() == Application.Status.UP) return;
+        if (application.getStatus() == Application.Status.UP) return Result.succeed();
 
         // 更新应用程序状态
         find.get().setStatus(Application.Status.UP);
@@ -119,6 +120,7 @@ public class ApplicationService {
         ))));
 
         log.trace("Application heartbeat: {}", find.get());
+        return Result.succeed();
     }
 
     private void scheduleHeartbeatCheck(Application application) {

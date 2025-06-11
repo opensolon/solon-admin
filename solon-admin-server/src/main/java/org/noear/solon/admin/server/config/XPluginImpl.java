@@ -15,16 +15,11 @@ import org.noear.solon.web.staticfiles.repository.ClassPathStaticRepository;
 public class XPluginImpl implements Plugin {
     @Override
     public void start(AppContext context) {
-        if (Solon.app().source().isAnnotationPresent(EnableAdminServer.class) == false) {
+        if (!Solon.app().source().isAnnotationPresent(EnableAdminServer.class)) {
             return;
         }
 
-        //弃用
-        if(Solon.cfg().getBool("solon.admin.server.enabled",true) == false){
-            return;
-        }
-
-        if(Solon.cfg().getBool("solon.admin.server.enable",true) == false){
+        if(!Solon.cfg().getBool("solon.admin.server.enable", true)){
             return;
         }
 
@@ -58,11 +53,11 @@ public class XPluginImpl implements Plugin {
             uiPath = "/";
         }
 
-        if (uiPath.startsWith("/") == false) {
+        if (!uiPath.startsWith("/")) {
             uiPath = "/" + uiPath;
         }
 
-        if (uiPath.endsWith("/") == false) {
+        if (!uiPath.endsWith("/")) {
             uiPath = uiPath + "/";
         }
 

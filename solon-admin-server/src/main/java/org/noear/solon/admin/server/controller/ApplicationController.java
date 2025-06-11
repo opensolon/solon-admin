@@ -36,7 +36,7 @@ public class ApplicationController {
      */
     @Put
     @Mapping("/register")
-    public Result register(@Body Application application) {
+    public Result<String> register(@Body Application application) {
         applicationService.registerApplication(application);
         return Result.succeed();
     }
@@ -48,7 +48,7 @@ public class ApplicationController {
      */
     @Delete
     @Mapping("/unregister")
-    public Result unregister(@Body Application application) {
+    public Result<String> unregister(@Body Application application) {
         applicationService.unregisterApplication(application);
         return Result.succeed();
     }
@@ -60,9 +60,8 @@ public class ApplicationController {
      */
     @Post
     @Mapping("/heartbeat")
-    public Result heartbeat(@Body Application application) {
-        applicationService.heartbeatApplication(application);
-        return Result.succeed();
+    public Result<String> heartbeat(@Body Application application) {
+        return applicationService.heartbeatApplication(application);
     }
 
     /**

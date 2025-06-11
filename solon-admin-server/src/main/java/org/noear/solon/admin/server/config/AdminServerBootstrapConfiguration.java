@@ -37,6 +37,8 @@ public class AdminServerBootstrapConfiguration {
 
     @Value
     public static class MarkedServerEnabled {
+        public static final String LOCAL_MODE = "local";
+        public static final String CLOUD_MODE = "cloud";
         String mode;
 
         public MarkedServerEnabled(String mode) {

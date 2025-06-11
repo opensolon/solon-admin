@@ -42,19 +42,29 @@ public class AutoRegistrationConfiguration {
     }
 
     public void onStart(ApplicationRegistrationService applicationRegistrationService) {
-        // 注册应用程序
-        applicationRegistrationService.register();
-
-        // 计划心跳
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                applicationRegistrationService.heartbeat();
-            }
-        }, 0, clientProperties.getHeartbeatInterval());
+        // 开启新的守护线程，不阻塞主程序执行，不影响业务
+        Thread subThread = new Thread(() -> {
+            // 注册应用程序，直至注册成功
+            applicationRegistrationService.register();
+            // 计划心跳
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if (!applicationRegistrationService.heartbeat()) {
+                        // 心跳失败时，进行重新注册
+                        // 注册应用程序，直至注册成功
+                        applicationRegistrationService.register();
+                    }
+                }
+            }, 0, clientProperties.getHeartbeatInterval());
+        });
+        subThread.setDaemon(true);
+        subThread.start();
     }
 
     public void onStop(ApplicationRegistrationService applicationRegistrationService) {
+        // 注销应用程序
+        applicationRegistrationService.unregister();
         // 取消心跳计时器
         timer.cancel();
     }
