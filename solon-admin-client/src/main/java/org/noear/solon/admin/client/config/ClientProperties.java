@@ -13,13 +13,15 @@ public class ClientProperties {
 
     private boolean enabled = true;
 
-    private String mode = "local";
+    private String mode = AdminClientBootstrapConfiguration.MarkedClientEnabled.LOCAL_MODE;
 
     private String token = "3C41D632-A070-060C-40D2-6D84B3C07094";
 
     private String serverUrl = "http://localhost:8080";
 
     private long heartbeatInterval = 10 * 1000;
+
+    private long retryInterval = 3 * 1000;
 
     private long connectTimeout = 5 * 1000;
 

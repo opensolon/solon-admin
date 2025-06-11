@@ -30,10 +30,10 @@ public class AdminClientBootstrapConfiguration {
 
     @Bean
     public ClientProperties clientProperties() {
-        if ("local".equals(clientProperties.getMode())) {
-            log.debug("Injected localClientProperties: " + clientProperties);
+        if (MarkedClientEnabled.LOCAL_MODE.equals(clientProperties.getMode())) {
+            log.debug("Injected localClientProperties: {}", clientProperties);
         } else {
-            log.debug("Injected cloudClientProperties: " + clientProperties);
+            log.debug("Injected cloudClientProperties: {}", clientProperties);
         }
 
         String serverUrl = (String) Solon.app().shared().get("solon-admin-server-url");
@@ -54,6 +54,8 @@ public class AdminClientBootstrapConfiguration {
 
     @Value
     public static class MarkedClientEnabled {
+        public static final String LOCAL_MODE = "local";
+        public static final String CLOUD_MODE = "cloud";
         String mode;
 
         public MarkedClientEnabled(String mode) {
