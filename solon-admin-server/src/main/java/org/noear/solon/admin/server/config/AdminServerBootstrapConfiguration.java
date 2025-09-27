@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class AdminServerBootstrapConfiguration {
 
-    @Condition(onProperty = "${solon.admin.server.enabled:true} = true")
+    @Condition(onExpression = "${solon.admin.server.enabled:true} == 'true'")
     @Bean
     public MarkedServerEnabled markedServerEnabled(@Inject("${solon.admin.server.mode:local}") String mode) {
         return new MarkedServerEnabled(mode);
