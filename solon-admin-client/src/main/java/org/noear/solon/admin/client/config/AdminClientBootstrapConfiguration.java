@@ -1,7 +1,5 @@
 package org.noear.solon.admin.client.config;
 
-import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import org.noear.solon.Solon;
 import org.noear.solon.Utils;
@@ -9,6 +7,8 @@ import org.noear.solon.annotation.Bean;
 import org.noear.solon.annotation.Configuration;
 import org.noear.solon.annotation.Inject;
 import org.noear.solon.core.AppContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +18,9 @@ import java.util.concurrent.TimeUnit;
  * @author shaokeyibb
  * @since 2.3
  */
-@Slf4j
 @Configuration
 public class AdminClientBootstrapConfiguration {
+    private static final Logger log = LoggerFactory.getLogger(AdminClientBootstrapConfiguration.class);
 
     @Inject
     AppContext appContext;
@@ -52,16 +52,19 @@ public class AdminClientBootstrapConfiguration {
         return new MarkedClientEnabled(clientProperties.getMode());
     }
 
-    @Value
     public static class MarkedClientEnabled {
         public static final String LOCAL_MODE = "local";
         public static final String CLOUD_MODE = "cloud";
-        String mode;
+        public final String mode;
 
         public MarkedClientEnabled(String mode) {
             this.mode = mode;
 
             log.info("Solon Admin client has been successfully enabled in {} mode.", this.mode);
+        }
+
+        public String getMode() {
+            return mode;
         }
     }
 

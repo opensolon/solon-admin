@@ -1,8 +1,5 @@
 package org.noear.solon.admin.client.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.util.Map;
 
 /**
@@ -11,12 +8,29 @@ import java.util.Map;
  * @author shaokeyibb
  * @since 2.3
  */
-@AllArgsConstructor
-@Data
 public class Detector {
 
     private String name;
-
     private Map<String, Object> info;
-
+    
+    public Detector(String name, Map<String, Object> info) {
+        this.name = name;
+        this.info = info;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public Map<String, Object> getInfo() {
+        return info;
+    }
+    
+    public void setInfo(Map<String, Object> info) {
+        this.info = info;
+    }
 }

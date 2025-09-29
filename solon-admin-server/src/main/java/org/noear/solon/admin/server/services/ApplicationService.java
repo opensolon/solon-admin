@@ -1,7 +1,7 @@
 package org.noear.solon.admin.server.services;
 
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.noear.solon.admin.server.config.ServerProperties;
 import org.noear.solon.admin.server.data.Application;
 import org.noear.solon.admin.server.data.ApplicationWebsocketTransfer;
@@ -11,10 +11,7 @@ import org.noear.solon.annotation.Inject;
 import org.noear.solon.core.handle.Result;
 import org.noear.solon.net.websocket.WebSocket;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -22,9 +19,9 @@ import java.util.concurrent.TimeUnit;
  * @author shaokeyibb
  * @since 2.3
  */
-@Slf4j
 @Component
 public class ApplicationService {
+    private static final Logger log = LoggerFactory.getLogger(ApplicationService.class);
 
     private final Map<String, Application> applications = new HashMap<>();
 
@@ -79,7 +76,7 @@ public class ApplicationService {
      * @param application 应用程序
      */
     public void unregisterApplication(Application application) {
-        val find = applications.values().stream().filter(it -> it.equals(application)).findFirst();
+        Optional<Application> find = applications.values().stream().filter(it -> it.equals(application)).findFirst();
         if (!find.isPresent()) return;
 
         applications.remove(find.get().toKey());
@@ -101,7 +98,7 @@ public class ApplicationService {
      * @param application 应用程序
      */
     public Result<String> heartbeatApplication(Application application) {
-        val find = applications.values().stream().filter(it -> it.equals(application)).findFirst();
+        Optional<Application> find = applications.values().stream().filter(it -> it.equals(application)).findFirst();
         if (!find.isPresent()) return Result.failure();
         find.get().setLastHeartbeat(System.currentTimeMillis());
 
@@ -188,7 +185,7 @@ public class ApplicationService {
      * @return 应用程序
      */
     public Application getApplication(String name, String baseUrl) {
-        val find = applications.values().stream().filter(it -> it.getName().equals(name) && it.getBaseUrl().equals(baseUrl)).findFirst();
+        Optional<Application> find = applications.values().stream().filter(it -> it.getName().equals(name) && it.getBaseUrl().equals(baseUrl)).findFirst();
         return find.orElse(null);
     }
 
