@@ -1,7 +1,5 @@
 package org.noear.solon.admin.client.services;
 
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import okhttp3.*;
 import org.noear.snack.ONode;
 import org.noear.solon.Solon;
@@ -15,6 +13,8 @@ import org.noear.solon.annotation.Component;
 import org.noear.solon.annotation.Inject;
 import org.noear.solon.core.LoadBalance;
 import org.noear.solon.core.handle.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -26,9 +26,10 @@ import java.net.URL;
  * @author shaokeyibb
  * @since 2.3
  */
-@Slf4j
 @Component
 public class ApplicationRegistrationService {
+    private static final Logger log = LoggerFactory.getLogger(ApplicationRegistrationService.class);
+
     @Inject
     private OkHttpClient client;
 
@@ -63,7 +64,7 @@ public class ApplicationRegistrationService {
         // 循环重试，直到注册成功
         boolean registerResult = false;
         while (!registerResult) {
-            val serverUrl = getServerUrl();
+            String serverUrl = getServerUrl();
             if (serverUrl != null) {
                 String clientMetadata = Solon.cfg().getProp("solon.app").toString();
                 try (Response response = client.newCall(new Request.Builder()
@@ -96,7 +97,7 @@ public class ApplicationRegistrationService {
      */
     public void unregister() {
         log.info("Attempting to unregister this client from Solon Admin server...");
-        val serverUrl = getServerUrl();
+        String serverUrl = getServerUrl();
         if (serverUrl != null) {
             // 向 Server 发送注销请求
             try (Response response = client.newCall(new Request.Builder()
@@ -118,7 +119,7 @@ public class ApplicationRegistrationService {
      */
     public boolean heartbeat() {
         log.trace("Attempting to send heartbeat to Solon Admin server...");
-        val serverUrl = getServerUrl();
+        String serverUrl = getServerUrl();
         if (serverUrl != null) {
             // 向 Server 发送心跳请求
             try (Response response = client.newCall(new Request.Builder()
@@ -143,13 +144,13 @@ public class ApplicationRegistrationService {
      * @return Solon Admin Server 地址
      */
     private String getServerUrl() {
-        val serverUri = URI.create(this.properties.getServerUrl());
+        URI serverUri = URI.create(this.properties.getServerUrl());
         String serverUrl;
         if (AdminClientBootstrapConfiguration.MarkedClientEnabled.CLOUD_MODE.equals(properties.getMode())
                 && serverUri.getScheme().equals("lb")) {
             // cloud 模式，并且配置的 serverUrl 为 lb://xxx 负载地址
             // 通过 LoadBalance 从注册中心获取实际的 Solon Admin Server 地址
-            val server = LoadBalance.get(Solon.cfg().appGroup(), serverUri.getHost()).getServer();
+            String server = LoadBalance.get(Solon.cfg().appGroup(), serverUri.getHost()).getServer();
             if (server != null) {
                 serverUrl = server;
             } else {
@@ -175,7 +176,7 @@ public class ApplicationRegistrationService {
         if (!response.isSuccessful()) {
             log.error("Failed to {} to Solon Admin server. response: {}", type, response);
         }
-        val body = response.body();
+        ResponseBody body = response.body();
         if (body != null) {
             String res = new String(response.body().bytes());
             Result<?> result = ONode.load(res).toObject(Result.class);

@@ -1,20 +1,8 @@
 package org.noear.solon.admin.server.data;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.util.Collection;
+import java.util.Objects;
 
-/**
- * 应用程序数据
- *
- * @author shaokeyibb
- * @since 2.3
- */
-@Data
-@NoArgsConstructor
 public class Application {
 
     private String name;
@@ -23,41 +11,122 @@ public class Application {
 
     private String baseUrl;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private String metadata;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private Status status = Status.DOWN;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private long startupTime = System.currentTimeMillis();
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private long lastHeartbeat;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private long lastUpTime;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private long lastDownTime;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private boolean showSecretInformation;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private EnvironmentInformation environmentInformation;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private Collection<Detector> monitors;
+
+    public Application() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public long getStartupTime() {
+        return startupTime;
+    }
+
+    public void setStartupTime(long startupTime) {
+        this.startupTime = startupTime;
+    }
+
+    public long getLastHeartbeat() {
+        return lastHeartbeat;
+    }
+
+    public void setLastHeartbeat(long lastHeartbeat) {
+        this.lastHeartbeat = lastHeartbeat;
+    }
+
+    public long getLastUpTime() {
+        return lastUpTime;
+    }
+
+    public void setLastUpTime(long lastUpTime) {
+        this.lastUpTime = lastUpTime;
+    }
+
+    public long getLastDownTime() {
+        return lastDownTime;
+    }
+
+    public void setLastDownTime(long lastDownTime) {
+        this.lastDownTime = lastDownTime;
+    }
+
+    public boolean isShowSecretInformation() {
+        return showSecretInformation;
+    }
+
+    public void setShowSecretInformation(boolean showSecretInformation) {
+        this.showSecretInformation = showSecretInformation;
+    }
+
+    public EnvironmentInformation getEnvironmentInformation() {
+        return environmentInformation;
+    }
+
+    public void setEnvironmentInformation(EnvironmentInformation environmentInformation) {
+        this.environmentInformation = environmentInformation;
+    }
+
+    public Collection<Detector> getMonitors() {
+        return monitors;
+    }
+
+    public void setMonitors(Collection<Detector> monitors) {
+        this.monitors = monitors;
+    }
 
     public void replace(Application application) {
         this.metadata = application.metadata;
@@ -79,4 +148,29 @@ public class Application {
     public String toKey() {
         return name + "@" + baseUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "name='" + name + '\'' +
+                ", token='" + token + '\'' +
+                ", baseUrl='" + baseUrl + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Application that = (Application) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(token, that.token) &&
+                Objects.equals(baseUrl, that.baseUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, token, baseUrl);
+    }
 }
+

@@ -1,8 +1,5 @@
 package org.noear.solon.admin.client.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.noear.solon.lang.Nullable;
 
 /**
@@ -12,9 +9,6 @@ import org.noear.solon.lang.Nullable;
  * @author shaokeyibb
  * @since 2.3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ApplicationWebsocketTransfer<T> {
 
     @Nullable
@@ -23,5 +17,38 @@ public class ApplicationWebsocketTransfer<T> {
     private String type;
 
     private T data;
-
+    
+    public ApplicationWebsocketTransfer() {
+    }
+    
+    public ApplicationWebsocketTransfer(@Nullable Application scope, String type, T data) {
+        this.scope = scope;
+        this.type = type;
+        this.data = data;
+    }
+    
+    @Nullable
+    public Application getScope() {
+        return scope;
+    }
+    
+    public void setScope(@Nullable Application scope) {
+        this.scope = scope;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public T getData() {
+        return data;
+    }
+    
+    public void setData(T data) {
+        this.data = data;
+    }
 }

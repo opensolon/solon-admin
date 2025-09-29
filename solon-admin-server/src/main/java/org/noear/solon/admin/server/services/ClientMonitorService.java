@@ -1,7 +1,7 @@
 package org.noear.solon.admin.server.services;
 
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -21,9 +21,9 @@ import java.util.Objects;
  * @author shaokeyibb
  * @since 2.3
  */
-@Slf4j
 @Component
 public class ClientMonitorService {
+    private static final Logger log = LoggerFactory.getLogger(ClientMonitorService.class);
 
     @Inject
     private OkHttpClient client;
@@ -34,7 +34,7 @@ public class ClientMonitorService {
      * @return 应用程序的监视器
      */
     public Collection<Detector> getMonitors(Application application) {
-        val clientUrl = application.getBaseUrl().replaceAll("/+$", "");
+        String clientUrl = application.getBaseUrl().replaceAll("/+$", "");
         try (Response response = client.newCall(new Request.Builder()
                 .url(new URL(clientUrl + "/solon-admin/api/monitor/data"))
                 .header("TOKEN", application.getToken())
