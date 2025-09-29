@@ -1,14 +1,11 @@
 package org.noear.solon.admin.client.config;
 
-import lombok.Data;
-
 /**
  * 本地模式配置文件
  *
  * @author shaokeyibb
  * @since 2.3
  */
-@Data
 public class ClientProperties {
 
     private boolean enabled = true;
@@ -28,4 +25,76 @@ public class ClientProperties {
     private long readTimeout = 5 * 1000;
 
     private boolean showSecretInformation = false;
+    
+    public boolean isEnabled() {
+        return enabled;
+    }
+    
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    public String getMode() {
+        return mode;
+    }
+    
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+    
+    public String getToken() {
+        return token;
+    }
+    
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
+    public String getServerUrl() {
+        return serverUrl;
+    }
+    
+    public void setServerUrl(String serverUrl) {
+        this.serverUrl = serverUrl;
+    }
+    
+    public long getHeartbeatInterval() {
+        return heartbeatInterval;
+    }
+    
+    public void setHeartbeatInterval(long heartbeatInterval) {
+        this.heartbeatInterval = heartbeatInterval;
+    }
+    
+    public long getRetryInterval() {
+        return retryInterval;
+    }
+    
+    public void setRetryInterval(long retryInterval) {
+        this.retryInterval = retryInterval;
+    }
+    
+    public long getConnectTimeout() {
+        return connectTimeout;
+    }
+    
+    public void setConnectTimeout(long connectTimeout) {
+        this.connectTimeout = connectTimeout;
+    }
+    
+    public long getReadTimeout() {
+        return readTimeout;
+    }
+    
+    public void setReadTimeout(long readTimeout) {
+        this.readTimeout = readTimeout;
+    }
+    
+    public boolean isShowSecretInformation() {
+        return showSecretInformation;
+    }
+    
+    public void setShowSecretInformation(boolean showSecretInformation) {
+        this.showSecretInformation = showSecretInformation;
+    }
 }

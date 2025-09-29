@@ -1,8 +1,7 @@
 package org.noear.solon.admin.server.config;
 
-import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import okhttp3.OkHttpClient;
 import org.noear.solon.Solon;
 import org.noear.solon.annotation.Bean;
@@ -19,9 +18,9 @@ import java.util.concurrent.TimeUnit;
  * @author shaokeyibb
  * @since 2.3
  */
-@Slf4j
 @Configuration
 public class AdminServerBootstrapConfiguration {
+    private static final Logger log = LoggerFactory.getLogger(AdminServerBootstrapConfiguration.class);
 
     @Condition(onExpression = "${solon.admin.server.enabled:true} == 'true'")
     @Bean
@@ -35,23 +34,26 @@ public class AdminServerBootstrapConfiguration {
         return new ScheduledThreadPoolExecutor(1);
     }
 
-    @Value
     public static class MarkedServerEnabled {
         public static final String LOCAL_MODE = "local";
         public static final String CLOUD_MODE = "cloud";
-        String mode;
+        private final String mode;
 
         public MarkedServerEnabled(String mode) {
             this.mode = mode;
 
             log.info("Solon Admin server has been successfully enabled in {} mode.", this.mode);
         }
+        
+        public String getMode() {
+            return mode;
+        }
     }
 
     @Bean
     public OkHttpClient okHttpClient(@Inject(required = false) MarkedServerEnabled marker) {
         if (marker == null) return null;
-        val config = Solon.context().getBean(ServerProperties.class);
+        ServerProperties config = Solon.context().getBean(ServerProperties.class);
 
         return new OkHttpClient.Builder()
                 .connectTimeout(config.getConnectTimeout(), TimeUnit.MILLISECONDS)
