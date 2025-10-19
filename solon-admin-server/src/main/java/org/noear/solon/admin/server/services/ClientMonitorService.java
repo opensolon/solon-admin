@@ -1,11 +1,11 @@
 package org.noear.solon.admin.server.services;
 
+import org.noear.snack4.codec.TypeRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.noear.snack.core.TypeRef;
 import org.noear.solon.admin.server.data.Application;
 import org.noear.solon.admin.server.data.Detector;
 import org.noear.solon.admin.server.utils.JsonUtils;
