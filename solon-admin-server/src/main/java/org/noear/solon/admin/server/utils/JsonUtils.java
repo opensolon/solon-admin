@@ -1,6 +1,6 @@
 package org.noear.solon.admin.server.utils;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 import java.lang.reflect.Type;
 
@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
  */
 public class JsonUtils {
     public static String toJson(Object obj) {
-        return ONode.stringify(obj);
+        return ONode.serialize(obj);
     }
 
     public static <T> T fromJson(String json, Type objClz){

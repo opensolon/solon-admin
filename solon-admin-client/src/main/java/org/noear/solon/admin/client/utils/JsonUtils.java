@@ -1,6 +1,6 @@
 package org.noear.solon.admin.client.utils;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 /**
  * @author noear
@@ -8,6 +8,6 @@ import org.noear.snack.ONode;
  */
 public class JsonUtils {
     public static String toJson(Object obj) {
-        return ONode.stringify(obj);
+        return ONode.serialize(obj);
     }
 }

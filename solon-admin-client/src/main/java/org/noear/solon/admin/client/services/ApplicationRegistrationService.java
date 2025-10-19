@@ -1,7 +1,7 @@
 package org.noear.solon.admin.client.services;
 
 import okhttp3.*;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Solon;
 import org.noear.solon.admin.client.config.AdminClientBootstrapConfiguration;
 import org.noear.solon.admin.client.config.ClientProperties;
@@ -178,8 +178,8 @@ public class ApplicationRegistrationService {
         }
         ResponseBody body = response.body();
         if (body != null) {
-            String res = new String(response.body().bytes());
-            Result<?> result = ONode.load(res).toObject(Result.class);
+            String res = response.body().string();
+            Result<?> result = ONode.ofJson(res).toBean(Result.class);
             if (result.getCode() == 200) {
                 if (traceLog) {
                     log.trace("Successfully {} to Solon Admin server.", type);
