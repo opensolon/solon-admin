@@ -24,9 +24,31 @@ This project includes:
   okhttp under The Apache Software License, Version 2.0
   okio under The Apache Software License, Version 2.0
   Project Lombok under The MIT License
-  SLF4J API Module under MIT License
+  SLF4J API Module under MIT
   smart-http-common under The Apache License, Version 2.0
   smart-http-server under The Apache License, Version 2.0
-  snack3 under The Apache Software License, Version 2.0
+  snack4 under The Apache Software License, Version 2.0
   SnakeYAML under Apache License, Version 2.0
+  solon under The Apache Software License, Version 2.0
+  solon-admin-server under The Apache Software License, Version 2.0
+  solon-admin-server-ui under The Apache Software License, Version 2.0
+  solon-cache under The Apache Software License, Version 2.0
+  solon-cloud under The Apache Software License, Version 2.0
+  solon-config-plus under The Apache Software License, Version 2.0
+  solon-config-yaml under The Apache Software License, Version 2.0
+  solon-data under The Apache Software License, Version 2.0
+  solon-expression under The Apache Software License, Version 2.0
+  solon-handle under The Apache Software License, Version 2.0
+  solon-health under The Apache Software License, Version 2.0
+  solon-lib under The Apache Software License, Version 2.0
+  solon-logging under The Apache Software License, Version 2.0
+  solon-logging-simple under The Apache Software License, Version 2.0
+  solon-net under The Apache Software License, Version 2.0
+  solon-proxy under The Apache Software License, Version 2.0
+  solon-security-vault under The Apache Software License, Version 2.0
+  solon-serialization under The Apache Software License, Version 2.0
+  solon-serialization-snack4 under The Apache Software License, Version 2.0
+  solon-server under The Apache Software License, Version 2.0
+  solon-server-smarthttp under The Apache Software License, Version 2.0
+  solon-web-staticfiles under The Apache Software License, Version 2.0
 
