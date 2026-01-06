@@ -1,6 +1,7 @@
 package org.noear.solon.admin.server.utils;
 
 import org.noear.snack4.ONode;
+import org.noear.snack4.codec.TypeRef;
 
 import java.lang.reflect.Type;
 
@@ -15,5 +16,9 @@ public class JsonUtils {
 
     public static <T> T fromJson(String json, Type objClz){
         return ONode.deserialize(json, objClz);
+    }
+
+    public static <T> T fromJson(String json, TypeRef<T> typeRef){
+        return ONode.deserialize(json, typeRef);
     }
 }

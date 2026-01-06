@@ -43,7 +43,7 @@ public class ClientMonitorService {
             if (response.isSuccessful()) {
                 String json = Objects.requireNonNull(response.body()).string();
 
-                return JsonUtils.fromJson(json,  (new TypeRef<List<Detector>>(){}).getClass());
+                return JsonUtils.fromJson(json,  new TypeRef<List<Detector>>(){});
             }
             log.warn("Failed to get monitors of {} with status code {}", application, response.code());
         } catch (Exception ex) {
