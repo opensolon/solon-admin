@@ -41,10 +41,10 @@ public class XPluginImpl implements Plugin {
         StaticMappings.add(uiPath, new ClassPathStaticRepository("META-INF/solon-admin-server-ui"));
 
         //添加签权
-        Solon.app().routerInterceptor(new AuthRouterInterceptor(uiPath, serverProperties));
+        Solon.app().router().routerInterceptor(new AuthRouterInterceptor(uiPath, serverProperties));
         //添加跳转
-        Solon.app().get(uiPath, c -> c.forward(uiPath + "index.html"));
-        Solon.app().get(uiPath + "index.html", c -> c.redirect(uiPath));
+        Solon.app().router().get(uiPath, c -> c.forward(uiPath + "index.html"));
+        Solon.app().router().get(uiPath + "index.html", c -> c.redirect(uiPath));
     }
 
     private String buildUiPath(ServerProperties serverProperties) {
